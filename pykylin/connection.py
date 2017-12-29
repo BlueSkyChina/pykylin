@@ -4,6 +4,7 @@ from .cursor import Cursor
 from .proxy import Proxy
 from .log import logger
 
+
 class Connection(object):
 
     def __init__(self, username, password, endpoint, project, **kwargs):
@@ -38,6 +39,15 @@ class Connection(object):
         tables = self.proxy.get(route, params=params)
         table = [t for t in tables if t['table_NAME'] == table_NAME][0]
         return table['columns']
+
+    def list_schemas(self):
+        route = 'tables_and_columns'
+        params = {'project': self.project}
+        tables = self.proxy.get(route, params=params)
+        # 去重Schema
+        schema_names = {}.fromkeys([t['table_SCHEM'] for t in tables]).keys()
+        logger.info("schema_names is : " + str(schema_names))
+        return schema_names
 
     def cursor(self):
         return Cursor(self)
