@@ -7,8 +7,8 @@ from .encoding import decode
 from .errors import Error
 from .log import logger
 
-class Proxy(object):
 
+class Proxy(object):
     def __init__(self, base_url):
         self.base_url = base_url
         self.cookies = {}
@@ -21,7 +21,7 @@ class Proxy(object):
         route = 'user/authentication'
         url = '%s/%s' % (self.base_url, route)
         self.user = user
-        self.password = user
+        self.password = password
         self.auth = HTTPBasicAuth(user, password)
         resp = requests.post(url, auth=self.auth, headers=self.headers)
 
