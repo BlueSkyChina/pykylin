@@ -1,9 +1,9 @@
 from setuptools import find_packages, setup
 import os
 
-version = "0.0.1"
+version = "0.0.2"
 
-readme = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
+readme = open(os.path.join(os.path.dirname(__file__), 'README.md')).read()
 
 req_file = os.path.join(os.path.dirname(__file__), 'requirements.txt')
 requirements = [i.strip() for i in open(req_file).readlines()]
